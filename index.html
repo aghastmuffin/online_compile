@@ -13,11 +13,21 @@
         async function runPyodideScript() {
             // Load Pyodide
             let pyodide = await loadPyodide();
-    
+            await pyodide.loadPackage("micropip");
+
+            const micropip = pyodide.pyimport("micropip");
+            await micropip.install('pyinstaller');
+
             // Run Python code
             let pythonCode = `
                 print("Hello, World, it's me, Pyodide!")
-            `;
+                input("waiting for input")
+                import PyInstaller.__main__
+            `; /*                PyInstaller.__main__.run([
+                    'my_script.py',
+                    '--onefile',
+                    '--windowed'
+                ])*/ //USE WEBSOCKETS TO COMMUNICATE FROM PY TO TAB
     
             try {
                 let result = pyodide.runPython(pythonCode);
