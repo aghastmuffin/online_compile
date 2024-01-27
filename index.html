@@ -21,7 +21,7 @@
             // Run Python code
             var name = prompt("What is your name?");
             let pythonCode = `
-                name1 = str(${name})
+                name1 = str("${name}")
                 print("Hello, World, it's me, Pyodide! You are" + name1)
 
             `; /*                PyInstaller.__main__.run([
