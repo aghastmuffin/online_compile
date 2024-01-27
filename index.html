@@ -7,5 +7,26 @@
 </head>
 <body>
     <script src="comp.js">console.log("wasm is running!");</script>
+    <script src="pyodide.js">
+        async function runPyodideScript() {
+            // Load Pyodide
+            let pyodide = await loadPyodide();
+    
+            // Run Python code
+            let pythonCode = `
+                print("Hello, World, it's me, Pyodide!")
+            `;
+    
+            try {
+                let result = pyodide.runPython(pythonCode);
+                console.log(result);
+            } catch (error) {
+                console.error('Error executing Python code:', error);
+            }
+        }
+    
+        // Call the function to run Pyodide script
+        runPyodideScript();
+    </script>
 </body>
 </html>
